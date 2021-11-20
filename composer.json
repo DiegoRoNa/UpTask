@@ -1,0 +1,18 @@
+{
+    "name": "diegorojasnava/up-task",
+    "description": "Proyecto UpTask MVC, PHP 8, SASS",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Diego Rojas Nava",
+            "email": "diegorn.10@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Model\\" : "./models"
+        }
+    }
+}
