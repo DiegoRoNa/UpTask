@@ -19,7 +19,24 @@ class Usuario extends ActiveRecord{
         $this->confirmado = $args['confirmado'] ?? 0;
     }
 
-    //VALIDAR FORMULARIO
+    //VALIDAR FORMULARIO DE LOGIN
+    public function validarLogin(){
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El correo es obligatorio';
+        }
+
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            self::$alertas['error'][] = 'Correo no válido';
+        }
+
+        if (!$this->password) {
+            self::$alertas['error'][] = 'La contraseña es obligatoria';
+        }
+
+        return self::$alertas;
+    }
+
+    //VALIDAR FORMULARIO DE CREAR CUENTA
     public function validarNuevaCuenta(){
         if (!$this->nombre) {
             self::$alertas['error'][] = 'El nombre es obligatorio';
@@ -30,7 +47,11 @@ class Usuario extends ActiveRecord{
         }
 
         if (!$this->email) {
-            self::$alertas['error'][] = 'El email es obligatorio';
+            self::$alertas['error'][] = 'El correo es obligatorio';
+        }
+
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            self::$alertas['error'][] = 'Correo no válido';
         }
 
         if (!$this->password) {
@@ -45,6 +66,36 @@ class Usuario extends ActiveRecord{
             self::$alertas['error'][] = 'Las contraseñas son diferentes';
         }
 
+
+        return self::$alertas;
+    }
+
+    //VALIDAR FORMULARIO DE OLVIDE PASSWORD
+    public function validarEmail(){
+        if (!$this->email) {
+            self::$alertas['error'][] = 'Coloca tu correo';
+        }
+
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            self::$alertas['error'][] = 'Correo no válido';
+        }
+
+        return self::$alertas;
+    }
+
+    //VALIDAR FORMULARIO DE REESTABLECER PASSWORD
+    public function validarPassword(){
+        if (!$this->password) {
+            self::$alertas['error'][] = 'La contraseña es obligatoria';
+        }
+
+        if (strlen($this->password) < 6) {
+            self::$alertas['error'][] = 'La contraseña debe contener mínimo 6 caracteres';
+        }
+
+        if ($this->password !== $this->password2) {
+            self::$alertas['error'][] = 'Las contraseñas son diferentes';
+        }
 
         return self::$alertas;
     }

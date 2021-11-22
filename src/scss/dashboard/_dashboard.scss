@@ -1,0 +1,42 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+//ESTILOS EN LA PAGINA DE DASHBOARD
+
+.dashboard{
+    background-color: v.$grisClaro;
+
+    @include m.tablet {
+        display: flex;
+        height: 100vh;//viewport Height (Todo la altura de la pantalla)
+    }
+
+    .principal{
+        flex: 1;//obliga que el nav tome todo el ancho de la pantalla sobrante
+    }
+
+    .contenido{
+        padding: 2rem;
+
+        .nombre-pagina{
+            font-size: 2.8rem;
+            text-align: center;
+        }
+    }
+
+    .formulario{
+        input:not([type="submit"]){
+            background-color: v.$blanco;
+        }
+
+        input[type="submit"]{
+            @include m.boton (v.$indigo, v.$blanco);
+            padding: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+    }
+
+    
+}

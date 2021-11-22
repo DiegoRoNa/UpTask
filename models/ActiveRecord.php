@@ -72,6 +72,13 @@ class ActiveRecord {
         return array_shift( $resultado );//Sretorna solo el primer elemento del array
     }
 
+    // Busqueda todos los registros que tienen el mismo ID 
+    public static function belongsTo($columna, $valor) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ${columna} = '${valor}'";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
     // SQL para Consultas Avanzadas.
     //Consulta plana de SQL (usar cuando los métodos del modelo no son suficientes)
     public static function SQL($consulta) {

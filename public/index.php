@@ -6,6 +6,7 @@ A TRAVÉS DEL ROUTER QUE CONTIENE LAS RUTAS DE LA WEB */
 //INCLUIR BD, AUTOLOAD, FUNCIONES Y HERLPERS
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\DashboardController;
 use Controllers\LoginController;
 use MVC\Router;
 $router = new Router();
@@ -23,13 +24,22 @@ $router->post('/crear', [LoginController::class, 'crear']);
 $router->get('/olvide', [LoginController::class, 'olvide']);
 $router->post('/olvide', [LoginController::class, 'olvide']);
 
-//Colocar el nueovo password
+//Colocar el nuevo password
 $router->get('/reestablecer', [LoginController::class, 'reestablecer']);
 $router->post('/reestablecer', [LoginController::class, 'reestablecer']);
 
 //Confirmacion de cuenta
 $router->get('/mensaje', [LoginController::class, 'mensaje']);
 $router->get('/confirmar', [LoginController::class, 'confirmar']);
+
+//PRIVADA
+//Zona de proyectos DASHBOARD
+$router->get('/dashboard', [DashboardController::class, 'index']);
+$router->get('/crear-proyecto', [DashboardController::class, 'crear_proyecto']);
+$router->post('/crear-proyecto', [DashboardController::class, 'crear_proyecto']);
+$router->get('/proyecto', [DashboardController::class, 'proyecto']);
+$router->get('/perfil', [DashboardController::class, 'perfil']);
+
 
 
 

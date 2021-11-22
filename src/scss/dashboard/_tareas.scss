@@ -1,0 +1,15 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+//ESTILOS DE LA PAGINA NUEVA TAREA
+
+.contenedor-nueva-tarea{
+    display: flex;
+    justify-content: center;
+
+    .agregar-tarea{
+        cursor: pointer;
+        @include m.boton(v.$cyan, v.$blanco);
+        
+    }
+}

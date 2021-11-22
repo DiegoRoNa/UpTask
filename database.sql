@@ -9,3 +9,12 @@ CREATE TABLE usuarios(
     token VARCHAR(15),
     confirmado TINYINT(1)
 );
+
+--RESTRICCIONES DE INTEGRIDAD REFERENCIAL = SET_NULL
+CREATE TABLE proyectos(
+	id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    idUsuario INT(11),
+    proyecto VARCHAR(60),
+    url VARCHAR(15),
+    FOREIGN KEY (idUsuario) REFERENCES usuarios (id)
+);
